@@ -12,6 +12,10 @@
             .page { page-break-after: always; position: relative; }
             .page:last-child { page-break-after: auto; }
             input { border-bottom: 1px solid #000 !important; background: white !important; }
+            input::placeholder { color: transparent !important; }
+            input::-webkit-input-placeholder { color: transparent !important; }
+            input::-moz-placeholder { color: transparent !important; }
+            input:-ms-input-placeholder { color: transparent !important; }
             .field-wrapper { display: inline; }
             .controls { display: none !important; }
             h2 { page-break-after: avoid; }
