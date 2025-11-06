@@ -8,8 +8,8 @@
         @media print {
             body { margin: 0; padding: 0; background: white; }
             .no-print { display: none !important; }
-            .container { box-shadow: none; padding: 0.75in; page-break-after: auto; }
-            .page { page-break-after: always; position: relative; }
+            .container { box-shadow: none; padding: 0.5in; page-break-after: auto; }
+            .page { page-break-after: always; position: relative; min-height: 9.5in; }
             .page:last-child { page-break-after: auto; }
             input { border-bottom: 1px solid #000 !important; background: white !important; }
             input::placeholder { color: transparent !important; }
@@ -18,17 +18,16 @@
             input:-ms-input-placeholder { color: transparent !important; }
             .field-wrapper { display: inline; }
             .controls { display: none !important; }
-            h2 { page-break-after: avoid; }
+            h2 { page-break-after: avoid; margin-top: 15px; margin-bottom: 8px; }
+            p { margin-bottom: 8px; line-height: 1.6; }
             .signature-area { page-break-before: auto; page-break-inside: avoid; }
-            .witness-block { page-break-inside: avoid; }
+            .witness-block { page-break-inside: avoid; margin: 15px 0; }
             .notary-section { page-break-before: auto; page-break-inside: avoid; }
-            .page-number { display: block; }
+            .page-number { display: none !important; }
+            .section-group { margin-bottom: 15px; }
             @page { 
-                margin: 0.75in;
-                @bottom-center { content: none; }
-                @top-left { content: none; }
-                @top-right { content: none; }
-                @top-center { content: none; }
+                size: letter;
+                margin: 0;
             }
         }
         body {
@@ -45,7 +44,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
         .page {
-            min-height: 7in;
+            min-height: 9.5in;
         }
         h1 {
             text-align: center;
@@ -186,6 +185,13 @@
             font-size: 13px;
             line-height: 1.6;
         }
+        .print-tip {
+            background: #f0f0f0;
+            padding: 10px;
+            border-left: 4px solid #666;
+            margin-top: 10px;
+            font-size: 12px;
+        }
         .section-group {
             page-break-inside: avoid;
         }
@@ -211,6 +217,9 @@
     <div class="button-container no-print">
         <div class="instructions">
             <strong>Instructions:</strong> Click on any yellow field to show styling controls (font size & bold). Fill in all fields, then click "Print to PDF" to save your completed document.
+            <div class="print-tip">
+                <strong>💡 To remove headers/footers:</strong> In the print dialog, look for "More settings" or "Options" and uncheck "Headers and footers" to remove the file path, date, and page numbers that your browser adds.
+            </div>
         </div>
         <div class="instructions" style="background: #fff3cd; border-left-color: #ff9800;">
             <strong>⚠️ LEGAL DISCLAIMER:</strong> This document is provided as a template for informational purposes only and does not constitute legal advice. Creating a valid will requires compliance with Nebraska state law, including proper execution, witnessing, and notarization requirements. This template may not address your specific circumstances or comply with all legal requirements. We strongly recommend consulting with a qualified attorney licensed in Nebraska to ensure your will is legally valid and properly reflects your wishes. The creators of this template assume no responsibility or liability for any consequences resulting from the use of this document.
@@ -288,7 +297,7 @@
                 </p>
             </div>
             
-            <div class="page-number">Page 1 of 3</div>
+            <div class="page-number" style="display: none;">Page 1 of 3</div>
         </div>
 
         <div class="page">
@@ -309,7 +318,7 @@
                 </div>
             </div>
 
-            <div class="page-number">Page 2 of 3</div>
+            <div class="page-number" style="display: none;">Page 2 of 3</div>
         </div>
 
         <div class="page">
@@ -356,7 +365,7 @@
                 </p>
             </div>
             
-            <div class="page-number">Page 3 of 3</div>
+            <div class="page-number" style="display: none;">Page 3 of 3</div>
         </div>
     </div>
 
