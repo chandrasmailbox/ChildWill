@@ -8,23 +8,16 @@
         @media print {
             body { margin: 0; padding: 0; background: white; }
             .no-print { display: none !important; }
-            .container { box-shadow: none; padding: 0.5in; page-break-after: auto; }
-            .page { page-break-after: always; position: relative; min-height: 9.5in; }
+            .container { box-shadow: none; padding: 0; }
+            .page { page-break-after: always; padding: 0.75in; }
             .page:last-child { page-break-after: auto; }
             input { border-bottom: 1px solid #000 !important; background: white !important; }
             input::placeholder { color: transparent !important; }
             input::-webkit-input-placeholder { color: transparent !important; }
             input::-moz-placeholder { color: transparent !important; }
             input:-ms-input-placeholder { color: transparent !important; }
-            .field-wrapper { display: inline; }
+            .field-wrapper { display: inline-block; }
             .controls { display: none !important; }
-            h2 { page-break-after: avoid; margin-top: 15px; margin-bottom: 8px; }
-            p { margin-bottom: 8px; line-height: 1.6; }
-            .signature-area { page-break-before: auto; page-break-inside: avoid; }
-            .witness-block { page-break-inside: avoid; margin: 15px 0; }
-            .notary-section { page-break-before: auto; page-break-inside: avoid; }
-            .page-number { display: none !important; }
-            .section-group { margin-bottom: 15px; }
             @page { 
                 size: letter;
                 margin: 0;
@@ -40,36 +33,34 @@
             max-width: 8.5in;
             margin: 0 auto;
             background: white;
-            padding: 1in;
             box-shadow: 0 0 20px rgba(0,0,0,0.2);
         }
         .page {
-            min-height: 9.5in;
+            padding: 0.75in;
+            background: white;
         }
         h1 {
             text-align: center;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin: 0 0 5px 0;
             letter-spacing: 1px;
         }
         .subtitle {
             text-align: center;
-            font-size: 13px;
-            margin-bottom: 25px;
+            font-size: 12px;
+            margin: 3px 0;
         }
         h2 {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 10px;
+            margin: 18px 0 8px 0;
             text-decoration: underline;
-            page-break-after: avoid;
         }
         p {
             font-size: 12px;
-            line-height: 1.7;
-            margin-bottom: 10px;
+            line-height: 1.5;
+            margin: 0 0 8px 0;
             text-align: justify;
         }
         .field-wrapper {
@@ -81,7 +72,7 @@
             border: none;
             border-bottom: 1px solid #333;
             background: #fffacd;
-            padding: 2px 4px;
+            padding: 1px 3px;
             font-family: 'Times New Roman', serif;
             font-size: 12px;
             vertical-align: baseline;
@@ -120,36 +111,31 @@
             margin-right: 8px;
             font-size: 11px;
         }
-        .short { width: 60px; min-width: 60px; max-width: 60px; }
-        .medium { width: 180px; min-width: 180px; max-width: 180px; }
-        .long { width: 280px; min-width: 280px; max-width: 280px; }
-        .xlong { width: 380px; min-width: 380px; max-width: 380px; }
-        .full { width: 380px; min-width: 380px; max-width: 380px; display: block; margin: 5px 0; }
+        .short { width: 50px; min-width: 50px; max-width: 50px; }
+        .medium { width: 150px; min-width: 150px; max-width: 150px; }
+        .long { width: 250px; min-width: 250px; max-width: 250px; }
+        .xlong { width: 350px; min-width: 350px; max-width: 350px; }
+        .full-width { width: 100%; display: block; margin: 3px 0; max-width: 500px; }
         ul {
-            margin: 10px 0 10px 40px;
+            margin: 5px 0 8px 30px;
             padding: 0;
+            list-style-type: none;
         }
         li {
-            margin-bottom: 8px;
-            line-height: 1.7;
+            margin-bottom: 5px;
+            line-height: 1.5;
         }
-        .signature-area {
-            margin-top: 30px;
-            page-break-inside: avoid;
+        .signature-section {
+            margin-top: 15px;
         }
         .sig-line {
             display: inline-block;
-            width: 280px;
+            width: 250px;
             border-bottom: 1px solid #000;
             margin: 0 5px;
         }
         .witness-block {
-            margin: 20px 0;
-            page-break-inside: avoid;
-        }
-        .notary-section {
-            page-break-inside: avoid;
-            margin-top: 30px;
+            margin: 15px 0;
         }
         .button-container {
             text-align: center;
@@ -192,25 +178,6 @@
             margin-top: 10px;
             font-size: 12px;
         }
-        .section-group {
-            page-break-inside: avoid;
-        }
-        .page-number {
-            display: none;
-            text-align: center;
-            font-size: 11px;
-            color: #666;
-            margin-top: 20px;
-        }
-        @media print {
-            .page-number {
-                display: block;
-                position: absolute;
-                bottom: 0.5in;
-                left: 0;
-                right: 0;
-            }
-        }
     </style>
 </head>
 <body>
@@ -229,143 +196,132 @@
     </div>
 
     <div class="container">
+        <!-- PAGE 1 -->
         <div class="page">
             <h1>LAST WILL AND TESTAMENT</h1>
-            <div class="subtitle">of <span class="field-wrapper"><input type="text" class="long" placeholder="Your Full Legal Name" maxlength="60" data-field="name"></span></div>
+            <div class="subtitle">of</div>
+            <div class="subtitle"><span class="field-wrapper"><input type="text" class="long" maxlength="60"></span></div>
             <div class="subtitle">City of Omaha, Douglas County, Nebraska</div>
 
-            <div class="section-group">
-                <h2>Declaration</h2>
-                <p>
-                    I, <span class="field-wrapper"><input type="text" class="long" placeholder="Full Name" maxlength="60" data-field="name"></span>, residing at 
-                    <span class="field-wrapper"><input type="text" class="xlong full" placeholder="Address, Omaha, Nebraska ZIP" maxlength="60" data-field="address"></span>, 
-                    being of sound mind, declare this to be my Last Will and Testament, revoking all prior wills and codicils.
-                </p>
-            </div>
+            <h2>Declaration</h2>
+            <p>
+                I, <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>, residing at
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="xlong full-width" maxlength="60"></span>, being of sound mind, declare this to be my Last Will and Testament, revoking all prior wills and codicils.
+            </p>
 
-            <div class="section-group">
-                <h2>Family Information</h2>
-                <p>
-                    I am married to <span class="field-wrapper"><input type="text" class="long" placeholder="Spouse's Full Name" maxlength="60" data-field="name"></span>, and we have the following children:
-                </p>
-                <ul>
-                    <li><span class="field-wrapper"><input type="text" class="medium" placeholder="Child 1 Full Name" maxlength="60" data-field="name"></span>, <input type="date" class="medium" placeholder="Date of Birth"></li>
-                    <li><span class="field-wrapper"><input type="text" class="medium" placeholder="Child 2 Full Name" maxlength="60" data-field="name"></span>, <input type="date" class="medium" placeholder="Date of Birth"></li>
-                </ul>
-            </div>
+            <h2>Family Information</h2>
+            <p>
+                I am married to <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>, and we have the following children:
+            </p>
+            <ul>
+                <li><span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>, <input type="text" class="medium" placeholder="mm/dd/yyyy"></li>
+                <li><span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>, <input type="text" class="medium" placeholder="mm/dd/yyyy"></li>
+            </ul>
 
-            <div class="section-group">
-                <h2>Appointment of Executor</h2>
-                <p>
-                    I appoint <span class="field-wrapper"><input type="text" class="medium" placeholder="Executor's Full Name" maxlength="60" data-field="name"></span>, 
-                    <span class="field-wrapper"><input type="text" class="xlong full" placeholder="Executor's Address" maxlength="60" data-field="address"></span> 
-                    as Executor of this will. If he/she/they is unable or unwilling to serve, I appoint 
-                    <span class="field-wrapper"><input type="text" class="medium" placeholder="Alternate Executor's Name" maxlength="60" data-field="name"></span>, 
-                    <span class="field-wrapper"><input type="text" class="xlong full" placeholder="Alternate Executor's Address" maxlength="60" data-field="address"></span> 
-                    as alternate Executor. The Executor shall have full authority to settle my estate according to this will, including managing property and distributing assets.
-                </p>
-            </div>
-
-            <div class="section-group">
-                <h2>Appointment of Guardian for Minor Children</h2>
-                <p>
-                    In the event of my death (and that of my spouse, if applicable), I appoint 
-                    <span class="field-wrapper"><input type="text" class="medium" placeholder="Guardian's Full Name" maxlength="60" data-field="name"></span>, 
-                    <span class="field-wrapper"><input type="text" class="xlong full" placeholder="Guardian's Address" maxlength="60" data-field="address"></span>, 
-                    <span class="field-wrapper"><input type="text" class="medium" placeholder="Relationship"></span> 
-                    as the Guardian of my minor children. If <span class="field-wrapper"><input type="text" class="medium" placeholder="Guardian's Name" maxlength="60" data-field="name"></span> 
-                    is unable or unwilling to serve, I appoint 
-                    <span class="field-wrapper"><input type="text" class="medium" placeholder="Alternate Guardian's Name" maxlength="60" data-field="name"></span>, 
-                    <span class="field-wrapper"><input type="text" class="xlong full" placeholder="Alternate Guardian's Address" maxlength="60" data-field="address"></span>, 
-                    <span class="field-wrapper"><input type="text" class="medium" placeholder="Relationship"></span> 
-                    as alternate Guardian. The Guardian shall have full legal custody and authority to make all decisions for my children's health, education, residence, and general welfare until they reach the age of majority.
-                </p>
-            </div>
-
-            <div class="section-group">
-                <h2>Distribution of Property</h2>
-                <p>
-                    I direct that all my property, real and personal, be distributed as follows:
-                </p>
-                <ul>
-                    <li>To my spouse, <span class="field-wrapper"><input type="text" class="medium" placeholder="Spouse's Name" maxlength="60" data-field="name"></span>, all my estate.</li>
-                    <li>If my spouse does not survive me, then to my children in equal shares.</li>
-                </ul>
-                <p>
-                    Any property left for my children shall be held in trust by the Executor or Guardian until each child reaches age 
-                    <input type="text" class="short" placeholder="e.g., 21">, and may be used for their education, health, and general welfare.
-                </p>
-            </div>
-            
-            <div class="page-number" style="display: none;">Page 1 of 3</div>
+            <h2>Appointment of Executor</h2>
+            <p>
+                I appoint <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>,
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="xlong full-width" maxlength="60"></span> as Executor of this will. If he/she/they is unable or unwilling to serve, I appoint <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>,
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="xlong full-width" maxlength="60"></span> as alternate Executor. The Executor shall have full authority to settle my estate according to this will, including managing property and distributing assets.
+            </p>
         </div>
 
+        <!-- PAGE 2 -->
         <div class="page">
-            <div class="section-group">
-                <h2>Signature</h2>
-                <div class="signature-area">
-                    <p>
-                        I sign this will on this <input type="text" class="short" placeholder="day"> day of 
-                        <input type="text" class="medium" placeholder="month">, 
-                        <input type="text" class="short" placeholder="year">, in Omaha, Nebraska.
-                    </p>
-                    <p style="margin-top: 30px;">
-                        Signature of Testator (You): <span class="sig-line"></span>
-                    </p>
-                    <p>
-                        Printed Name: <span class="field-wrapper"><input type="text" class="long" placeholder="Your Full Name" maxlength="60" data-field="name"></span>
-                    </p>
-                </div>
-            </div>
+            <h2>Appointment of Guardian for Minor Children</h2>
+            <p>
+                In the event of my death (and that of my spouse, if applicable), I appoint <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>,
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="xlong full-width" maxlength="60"></span>,
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="medium" maxlength="60"></span> as the Guardian of my minor children. If <span class="field-wrapper"><input type="text" class="medium" maxlength="60"></span> is unable or unwilling to serve, I appoint
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>,
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="xlong full-width" maxlength="60"></span>, <span class="field-wrapper"><input type="text" class="medium" maxlength="60"></span> as alternate Guardian. The Guardian shall have full legal custody and authority to make all decisions for my children's health, education, residence, and general welfare until they reach the age of majority.
+            </p>
 
-            <div class="page-number" style="display: none;">Page 2 of 3</div>
+            <h2>Distribution of Property</h2>
+            <p>
+                I direct that all my property, real and personal, be distributed as follows:
+            </p>
+            <ul>
+                <li>To my spouse, <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>, all my estate.</li>
+                <li>If my spouse does not survive me, then to my children in equal shares.</li>
+            </ul>
+            <p>
+                Any property left for my children shall be held in trust by the Executor or Guardian until each child reaches age
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="short"></span>, and may be used for their education, health, and general welfare.
+            </p>
         </div>
 
+        <!-- PAGE 3 -->
         <div class="page">
-            <div class="section-group">
-                <h2>Witnesses</h2>
+            <h2>Signature</h2>
+            <div class="signature-section">
                 <p>
-                    We, the undersigned, hereby declare that the above-named testator signed this document as their Last Will and Testament in our presence, that the testator appeared to be of sound mind, and that we signed this will in the testator's presence and in each other's presence.
+                    I sign this will on this <span class="field-wrapper"><input type="text" class="short"></span> day of <span class="field-wrapper"><input type="text" class="medium"></span>, <span class="field-wrapper"><input type="text" class="short"></span>, in Omaha, Nebraska.
                 </p>
-
-                <div class="witness-block">
-                    <p><strong>Witness #1:</strong></p>
-                    <p>Signature: <span class="sig-line"></span></p>
-                    <p>Name: <span class="field-wrapper"><input type="text" class="long" placeholder="Full Name" maxlength="60" data-field="name"></span></p>
-                    <p>Address: <span class="field-wrapper"><input type="text" class="xlong full" placeholder="Full Address" maxlength="60" data-field="address"></span></p>
-                </div>
-
-                <div class="witness-block">
-                    <p><strong>Witness #2:</strong></p>
-                    <p>Signature: <span class="sig-line"></span></p>
-                    <p>Name: <span class="field-wrapper"><input type="text" class="long" placeholder="Full Name" maxlength="60" data-field="name"></span></p>
-                    <p>Address: <span class="field-wrapper"><input type="text" class="xlong full" placeholder="Full Address" maxlength="60" data-field="address"></span></p>
-                </div>
+                <p style="margin-top: 25px;">
+                    Signature of Testator (You): <span class="sig-line"></span>
+                </p>
+                <p style="margin-top: 8px;">
+                    Printed Name: <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span>
+                </p>
             </div>
 
-            <div class="notary-section">
-                <h2>Self-Proving Affidavit (Optional – Notary Section)</h2>
-                <p><strong>State of Nebraska</strong><br><strong>County of Douglas</strong></p>
-                <p>
-                    We, <span class="field-wrapper"><input type="text" class="medium" placeholder="Your Full Name" maxlength="60" data-field="name"></span>, 
-                    <span class="field-wrapper"><input type="text" class="medium" placeholder="Witness #1 Name" maxlength="60" data-field="name"></span>, and 
-                    <span class="field-wrapper"><input type="text" class="medium" placeholder="Witness #2 Name" maxlength="60" data-field="name"></span>, 
-                    being duly sworn, declare to the undersigned authority that the testator signed this instrument as their Last Will and Testament and that each of us signed as witnesses in the testator's presence.
-                </p>
-                <p style="margin-top: 30px;">
-                    Subscribed and sworn before me this <input type="text" class="short" placeholder="day"> day of 
-                    <input type="text" class="medium" placeholder="month">, 
-                    <input type="text" class="short" placeholder="year">.
-                </p>
-                <p style="margin-top: 30px;">
-                    Notary Public: <span class="sig-line"></span>
-                </p>
-                <p>
-                    My Commission Expires: <input type="date" class="medium">
-                </p>
+            <h2>Witnesses</h2>
+            <p>
+                We, the undersigned, hereby declare that the above-named testator signed this document as their Last Will and Testament in our presence, that the testator appeared to be of sound mind, and that we signed this will in the testator's presence and in each other's presence.
+            </p>
+
+            <div class="witness-block">
+                <p><strong>Witness #1:</strong></p>
+                <p>Signature: <span class="sig-line"></span></p>
+                <p>Name: <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span></p>
+                <p>Address: <span class="field-wrapper"><input type="text" class="xlong full-width" maxlength="60"></span></p>
             </div>
-            
-            <div class="page-number" style="display: none;">Page 3 of 3</div>
+
+            <div class="witness-block">
+                <p><strong>Witness #2:</strong></p>
+                <p>Signature: <span class="sig-line"></span></p>
+                <p>Name: <span class="field-wrapper"><input type="text" class="long" maxlength="60"></span></p>
+                <p>Address: <span class="field-wrapper"><input type="text" class="xlong full-width" maxlength="60"></span></p>
+            </div>
+        </div>
+
+        <!-- PAGE 4 -->
+        <div class="page">
+            <h2>Self-Proving Affidavit (Optional – Notary Section)</h2>
+            <p><strong>State of Nebraska</strong></p>
+            <p><strong>County of Douglas</strong></p>
+            <p style="margin-top: 10px;">
+                We, <span class="field-wrapper"><input type="text" class="medium" maxlength="60"></span>, <span class="field-wrapper"><input type="text" class="medium" maxlength="60"></span>, and
+            </p>
+            <p>
+                <span class="field-wrapper"><input type="text" class="medium" maxlength="60"></span>, being duly sworn, declare to the undersigned authority that the testator signed this instrument as their Last Will and Testament and that each of us signed as witnesses in the testator's presence.
+            </p>
+            <p style="margin-top: 25px;">
+                Subscribed and sworn before me this <span class="field-wrapper"><input type="text" class="short"></span> day of <span class="field-wrapper"><input type="text" class="medium"></span>, <span class="field-wrapper"><input type="text" class="short"></span>.
+            </p>
+            <p style="margin-top: 30px;">
+                Notary Public: <span class="sig-line"></span>
+            </p>
+            <p style="margin-top: 15px;">
+                My Commission Expires: <input type="text" class="medium" placeholder="mm/dd/yyyy">
+            </p>
         </div>
     </div>
 
@@ -421,7 +377,7 @@
 
         function clearForm() {
             if (confirm('Are you sure you want to clear all fields? This cannot be undone.')) {
-                document.querySelectorAll('input[type="text"], input[type="date"]').forEach(input => {
+                document.querySelectorAll('input[type="text"]').forEach(input => {
                     input.value = '';
                     input.style.fontSize = '12px';
                     input.style.fontWeight = 'normal';
